@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppBottomNav extends StatelessWidget {
   final int selectedIndex;
@@ -33,25 +33,25 @@ class AppBottomNav extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _NavItem(
-              icon: Icons.home_filled,
+              icon: "assets/icons/home.svg",
               label: "Home",
               isSelected: selectedIndex == 0,
               onTap: () => onIndexChanged(0),
             ),
             _NavItem(
-              icon: Icons.account_balance_wallet_outlined,
+              icon: "assets/icons/wallet.svg",
               label: "Wallet",
               isSelected: selectedIndex == 1,
               onTap: () => onIndexChanged(1),
             ),
             _NavItem(
-              icon: Icons.chat_bubble_outline,
+              icon: "assets/icons/chat.svg",
               label: "Support",
               isSelected: selectedIndex == 2,
               onTap: () => onIndexChanged(2),
             ),
             _NavItem(
-              icon: Icons.handshake_outlined,
+              icon: "assets/icons/coins.svg",
               label: "IB",
               isSelected: selectedIndex == 3,
               onTap: () => onIndexChanged(3),
@@ -64,7 +64,7 @@ class AppBottomNav extends StatelessWidget {
 }
 
 class _NavItem extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
@@ -83,10 +83,9 @@ class _NavItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
+          SvgPicture.asset(
             icon,
             color: isSelected ? Colors.black : Colors.grey,
-            size: 24,
           ),
           const SizedBox(height: 4),
           Text(

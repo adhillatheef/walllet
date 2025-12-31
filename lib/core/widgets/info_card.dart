@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/theme/app_typography.dart';
+import '../constants/app_colors.dart';
+import '../theme/app_typography.dart';
 
 class InfoCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String amountOrNumber;
   final Color backgroundColor;
-  final bool isLive; // Adds the little green dot for "Live" accounts
+  final Color? subtitleColor;
+  final bool isLive;
+  final Color? titleColor;
+  final Color? amountOrNumberColor;
+  final double? amountOrNumberFontSize;
 
   const InfoCard({
     super.key,
@@ -15,15 +19,22 @@ class InfoCard extends StatelessWidget {
     required this.subtitle,
     required this.amountOrNumber,
     this.backgroundColor = AppColors.cardSurface,
+    this.subtitleColor,
     this.isLive = false,
+    this.titleColor,
+    this.amountOrNumberColor,
+    this.amountOrNumberFontSize,
   });
 
   @override
   Widget build(BuildContext context) {
+    final effectiveTitleColor = titleColor ??
+        (backgroundColor == AppColors.cardSurface ? Colors.white : Colors.black87);
+
     return Container(
       width: 160,
       margin: const EdgeInsets.only(right: 12),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(16),
@@ -40,7 +51,7 @@ class InfoCard extends StatelessWidget {
               Text(
                   title,
                   style: AppTypography.bodyMedium.copyWith(
-                      color: backgroundColor == AppColors.cardSurface ? Colors.white : Colors.black87,
+                      color: effectiveTitleColor,
                       fontWeight: FontWeight.bold
                   )
               ),
@@ -54,14 +65,15 @@ class InfoCard extends StatelessWidget {
           Text(
               subtitle,
               style: AppTypography.bodySmall.copyWith(
-                  color: backgroundColor == AppColors.cardSurface ? Colors.grey : Colors.black54
+                  color: subtitleColor ?? (backgroundColor == AppColors.cardSurface ? Colors.grey : Colors.black54)
               )
           ),
           const SizedBox(height: 16),
           Text(
             amountOrNumber,
             style: AppTypography.titleMedium.copyWith(
-                color: backgroundColor == AppColors.cardSurface ? Colors.white : Colors.black
+                color: amountOrNumberColor ?? (backgroundColor == AppColors.cardSurface ? Colors.grey : Colors.black54),
+              fontSize: amountOrNumberFontSize,
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

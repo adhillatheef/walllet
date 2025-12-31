@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/theme/app_typography.dart';
+import '../constants/app_colors.dart';
+import '../theme/app_typography.dart';
 
 class TransactionTile extends StatelessWidget {
   final String title;
@@ -26,7 +26,7 @@ class TransactionTile extends StatelessWidget {
     final statusColor = status == "Rejected" ? AppColors.errorRed : AppColors.textSecondary;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 12, left: 24, right: 24),
+      margin: const EdgeInsets.only(bottom: 12, left: 12, right: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardSurface,
